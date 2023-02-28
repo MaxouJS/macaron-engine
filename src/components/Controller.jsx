@@ -5,7 +5,7 @@ import { Html, PerspectiveCamera, PresentationControls } from '@react-three/drei
 import MaleDummy from './characters/maleDummy/MaleDummy'
 
 export default function Controller(props) {
-  const [direction, setDirection] = useState('')
+  const [direction, setDirection] = useState([])
   const [animation, setAnimation] = useState('Idle')
 
   const [xPosition, setXPosition] = useState(0)
@@ -17,52 +17,88 @@ export default function Controller(props) {
   useEffect(() => {
     window.addEventListener('keydown', e => {
       if (e.key === 'ArrowUp') {
-        setAnimation('Walk')
-        setDirection('Up')
+        setDirection([...direction, 'Up'])
       }
 
       if (e.key === 'ArrowDown') {
-        setAnimation('Walk')
-        setDirection('Down')
+        setDirection([...direction, 'Down'])
       }
 
       if (e.key === 'ArrowLeft') {
-        setAnimation('Walk')
-        setDirection('Left')
+        setDirection([...direction, 'Left'])
       }
 
       if (e.key === 'ArrowRight') {
-        setAnimation('Walk')
-        setDirection('Right')
+        setDirection([...direction, 'Right'])
+      }
+
+      if (e.key === ' ') {
+        setDirection([...direction, 'Run'])
       }
     })
 
     window.addEventListener('keyup', e => {
-      setAnimation('Idle')
-      setDirection('')
-    })
+      if (direction && e.key === 'ArrowUp') {
+        setDirection(direction.filter(d => d !== 'Up'))
+      }
 
+      if (direction && e.key === 'ArrowDown') {
+        setDirection(direction.filter(d => d !== 'Down'))
+      }
+
+      if (direction && e.key === 'ArrowLeft') {
+        setDirection(direction.filter(d => d !== 'Left'))
+      }
+
+      if (direction && e.key === 'ArrowRight') {
+        setDirection(direction.filter(d => d !== 'Right'))
+      }
+
+      if (direction && e.key === ' ') {
+        setDirection(direction.filter(d => d !== 'Run'))
+      }
+    })
   })
 
   useFrame((state, delta) => {
-    if (direction === 'Up') {
-      setZPosition(zPosition - delta * 10)
+    let speed = 10
+
+    if (animation === 'Run') {
+      speed = 20
+    } else {
+      speed = 10
+    }
+
+    if (direction.includes('Up')) {
+      setZPosition(zPosition - delta * speed)
       setYRotation(-Math.PI / 1)
     }
 
-    if (direction === 'Down') {
-      setZPosition(zPosition + delta * 10)
+    if (direction.includes('Down')) {
+      setZPosition(zPosition + delta * speed)
       setYRotation(Math.PI * 2)
     }
 
-    if (direction === 'Left') {
-      setXPosition(xPosition - delta * 10)
+    if (direction.includes('Left')) {
+      setXPosition(xPosition - delta * speed)
       setYRotation(-Math.PI / 2)
     }
 
-    if (direction === 'Right') {
-      setXPosition(xPosition + delta * 10)
+    if (direction.includes('Right')) {
+      setXPosition(xPosition + delta * speed)
       setYRotation(Math.PI / 2)
+    }
+    
+    if (direction && direction.length === 0) {
+      setAnimation('Idle')
+    }
+
+    if (direction && direction.length > 0) {
+      if (direction.includes('Run')) {
+        setAnimation('Run')
+      } else {
+        setAnimation('Walk')
+      }
     }
 
     cameraRef.current.position.z = -zPosition
