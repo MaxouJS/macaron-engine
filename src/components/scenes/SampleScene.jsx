@@ -1,4 +1,4 @@
-import { Loader } from '@react-three/drei'
+import { Loader, Sky } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 
 import Bgm from '../Bgm'
@@ -17,6 +17,7 @@ export default function SampleScene() {
           <Model
             name='Floor'
           />
+          <Sky sunPosition={[0, 90, 0]} />
         </Controller>
       </Canvas>
       <Loader />
