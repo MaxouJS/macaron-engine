@@ -15,28 +15,18 @@ export default function Controller(props) {
   const [cameraZPosition, setCameraZPosition] = useState(0)
 
   const keyControls = () => {
-    document.addEventListener('keypress', e => {
+    document.addEventListener('keydown', e => {
       if (e.defaultPrevented) {
         return
-      }
-      
-      if ((e.key === 'ArrowUp' || e.key === 'z') && !directions.includes('Up') && !directions.includes('Down')) {
+      } else if  ((e.key === 'ArrowUp' || e.key === 'z') && !directions.includes('Up') && !directions.includes('Down')) {
         setDirections([...directions, 'Up'])
-      }
-      
-      if ((e.key === 'ArrowDown' || e.key === 's') && !directions.includes('Down') && !directions.includes('Up')) {
+      } else if  ((e.key === 'ArrowDown' || e.key === 's') && !directions.includes('Down') && !directions.includes('Up')) {
         setDirections([...directions, 'Down'])
-      }
-      
-      if ((e.key === 'ArrowLeft' || e.key === 'q') && !directions.includes('Left') && !directions.includes('Right')) {
+      } else if  ((e.key === 'ArrowLeft' || e.key === 'q') && !directions.includes('Left') && !directions.includes('Right')) {
         setDirections([...directions, 'Left'])
-      }
-      
-      if ((e.key === 'ArrowRight' || e.key === 'd') && !directions.includes('Right') && !directions.includes('Left')) {
+      } else if  ((e.key === 'ArrowRight' || e.key === 'd') && !directions.includes('Right') && !directions.includes('Left')) {
         setDirections([...directions, 'Right'])
-      }
-
-      if (e.key === ' ') {
+      } else if (e.key === ' ') {
         setDirections([])
       }
     }, false)
@@ -44,26 +34,18 @@ export default function Controller(props) {
     document.addEventListener('keyup', e => {
       if (e.defaultPrevented) {
         return
-      }
-
-      if (e.key === 'ArrowUp' || e.key === 'z') {
-        // setDirections(directions.splice(directions.indexOf('Up')))
-        setDirections(directions.filter(d => d !== 'Up'))
-      }
-      
-      if (e.key === 'ArrowDown' || e.key === 's') {
-        // setDirections(directions.splice(directions.indexOf('Down')))
-        setDirections(directions.filter(d => d !== 'Down'))
-      }
-      
-      if (e.key === 'ArrowLeft' || e.key === 'q') {
-        // setDirections(directions.splice(directions.indexOf('Left')))
-        setDirections(directions.filter(d => d !== 'Left'))
-      }
-      
-      if (e.key === 'ArrowRight' || e.key === 'd') {
-        // setDirections(directions.splice(directions.indexOf('Right')))
-        setDirections(directions.filter(d => d !== 'Right'))
+      } else if (e.key === 'ArrowUp' || e.key === 'z') {
+        setDirections(directions.splice(directions.indexOf('Up')))
+        // setDirections(directions.filter(d => d !== 'Up'))
+      } else if (e.key === 'ArrowDown' || e.key === 's') {
+        setDirections(directions.splice(directions.indexOf('Down')))
+        // setDirections(directions.filter(d => d !== 'Down'))
+      } else if (e.key === 'ArrowLeft' || e.key === 'q') {
+        setDirections(directions.splice(directions.indexOf('Left')))
+        // setDirections(directions.filter(d => d !== 'Left'))
+      } else if (e.key === 'ArrowRight' || e.key === 'd') {
+        setDirections(directions.splice(directions.indexOf('Right')))
+        // setDirections(directions.filter(d => d !== 'Right'))
       }
     }, false)
   }
