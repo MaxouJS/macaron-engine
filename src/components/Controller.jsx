@@ -14,7 +14,7 @@ export default function Controller(props) {
 
   const cameraRef = useRef()
 
-  const controls = () => {
+  const keyControls = () => {
     document.addEventListener('keydown', e => {
       if (e.defaultPrevented) {
         return
@@ -48,28 +48,24 @@ export default function Controller(props) {
 
       if (e.key === 'ArrowUp' || e.key === 'z') {
         setDirections(directions.filter(d => d !== 'Up'))
-        // setDirections(directions.splice(directions.indexOf('Up')))
       }
       
       if (e.key === 'ArrowDown' || e.key === 's') {
         setDirections(directions.filter(d => d !== 'Down'))
-        // setDirections(directions.splice(directions.indexOf('Down')))
       }
       
       if (e.key === 'ArrowLeft' || e.key === 'q') {
         setDirections(directions.filter(d => d !== 'Left'))
-        // setDirections(directions.splice(directions.indexOf('Left')))
       }
       
       if (e.key === 'ArrowRight' || e.key === 'd') {
         setDirections(directions.filter(d => d !== 'Right'))
-        // setDirections(directions.splice(directions.indexOf('Right')))
       }
     }, false)
   }
 
   useEffect(() => {
-    controls()
+    keyControls()
   })
 
   useFrame((state, delta) => {    
@@ -105,9 +101,9 @@ export default function Controller(props) {
       setYRotation(Math.PI * 2)
     } else if (directions && directions.includes('Left') && directions.length === 1) {
       setYRotation(-Math.PI / 2)
-    }else if (directions && directions.includes('Right') && directions.length === 1) {
+    } else if (directions && directions.includes('Right') && directions.length === 1) {
       setYRotation(Math.PI / 2)
-    }else if (directions && directions.includes('Up') && directions.includes('Left')) {
+    } else if (directions && directions.includes('Up') && directions.includes('Left')) {
       setYRotation(-Math.PI / 1.5)
     } else if (directions && directions.includes('Up') && directions.includes('Right')) {
       setYRotation(Math.PI / 1.5)
@@ -131,7 +127,10 @@ export default function Controller(props) {
 
   return (
     <PresentationControls
+      enabled={true}
       snap={<MaleDummy />}
+      speed={2}
+      zoom={2.5}
       rotation={[Math.PI * 2.25, 0, 0]}
       polar={[-Math.PI * 0.25, Math.PI * 0.25]}
       azimuth={[-Math.PI * 0.5, Math.PI * 0.5]}
@@ -139,7 +138,7 @@ export default function Controller(props) {
       <Html fullscreen></Html>
       <PerspectiveCamera
         ref={cameraRef}
-        position={[0, -0.5, 0]}
+        position={[0, -1, 0]}
         rotation={[0, 0, 0]}
       >
         <MaleDummy
