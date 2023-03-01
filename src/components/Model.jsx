@@ -25,4 +25,4 @@ export default function Model(props) {
   )
 }
 
-useGLTF.preload('/models/Floor.glb')
+useGLTF.preload('/models/Tile.glb')

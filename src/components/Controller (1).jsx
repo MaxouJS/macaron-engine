@@ -15,7 +15,7 @@ export default function Controller(props) {
   const cameraRef = useRef()
 
   const keyControls = () => {
-    document.addEventListener('keypress', e => {
+    document.addEventListener('keydown', e => {
       if (e.defaultPrevented) {
         return
       }
@@ -47,22 +47,18 @@ export default function Controller(props) {
       }
 
       if (e.key === 'ArrowUp' || e.key === 'z') {
-        // setDirections(directions.splice(directions.indexOf('Up')))
         setDirections(directions.filter(d => d !== 'Up'))
       }
       
       if (e.key === 'ArrowDown' || e.key === 's') {
-        // setDirections(directions.splice(directions.indexOf('Down')))
         setDirections(directions.filter(d => d !== 'Down'))
       }
       
       if (e.key === 'ArrowLeft' || e.key === 'q') {
-        // setDirections(directions.splice(directions.indexOf('Left')))
         setDirections(directions.filter(d => d !== 'Left'))
       }
       
       if (e.key === 'ArrowRight' || e.key === 'd') {
-        // setDirections(directions.splice(directions.indexOf('Right')))
         setDirections(directions.filter(d => d !== 'Right'))
       }
     }, false)
@@ -125,19 +121,17 @@ export default function Controller(props) {
       setAnimation('Run')
     }
 
-    setTimeout(() => {
-      cameraRef.current.position.z = -zPosition
-      cameraRef.current.position.x = -xPosition
-    }, 200)
+    cameraRef.current.position.z = -zPosition
+    cameraRef.current.position.x = -xPosition
   })
 
   return (
     <PresentationControls
-      enabled={false}
+      enabled={true}
       snap={<MaleDummy />}
       speed={2}
       zoom={2.5}
-      rotation={[Math.PI * 2, 0, 0]}
+      rotation={[Math.PI * 2.25, 0, 0]}
       polar={[-Math.PI * 0.25, Math.PI * 0.25]}
       azimuth={[-Math.PI * 0.5, Math.PI * 0.5]}
     >
@@ -145,7 +139,8 @@ export default function Controller(props) {
       </Html>
       <PerspectiveCamera
         ref={cameraRef}
-        position={[0, -2, 0]}
+        position={[0, -1, 0]}
+        rotation={[0, 0, 0]}
       >
         <MaleDummy
           animation={animation}

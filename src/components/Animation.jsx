@@ -29,5 +29,4 @@ export default function Animation(props) {
 
 useGLTF.preload('/animations/MaleDummyIdle.glb')
 useGLTF.preload('/animations/MaleDummyRun.glb')
-useGLTF.preload('/animations/MaleDummyWalk.glb')
 
