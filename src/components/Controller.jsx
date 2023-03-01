@@ -8,11 +8,11 @@ export default function Controller(props) {
   const [directions, setDirections] = useState([])
   const [animation, setAnimation] = useState('Idle')
 
-  const [xPosition, setXPosition] = useState(0)
-  const [zPosition, setZPosition] = useState(0)
+  const [userXPosition, setUserXPosition] = useState(0)
+  const [userZPosition, setUserZPosition] = useState(0)
   const [yRotation, setYRotation] = useState(0)
-
-  const cameraRef = useRef()
+  const [cameraXPosition, setCameraXPosition] = useState(0)
+  const [cameraZPosition, setCameraZPosition] = useState(0)
 
   const keyControls = () => {
     document.addEventListener('keypress', e => {
@@ -84,19 +84,19 @@ export default function Controller(props) {
     }
 
     if (directions && directions.includes('Up')) {
-      setZPosition(zPosition - delta * speed)
+      setUserZPosition(userZPosition - delta * speed)
     }
     
     if (directions && directions.includes('Down')) {
-      setZPosition(zPosition + delta * speed)
+      setUserZPosition(userZPosition + delta * speed)
     }
     
     if (directions && directions.includes('Left')) {
-      setXPosition(xPosition - delta * speed)
+      setUserXPosition(userXPosition - delta * speed)
     }
     
     if (directions && directions.includes('Right')) {
-      setXPosition(xPosition + delta * speed)
+      setUserXPosition(userXPosition + delta * speed)
     }
 
     if (directions && directions.includes('Up') && directions.length === 1) {
@@ -126,8 +126,8 @@ export default function Controller(props) {
     }
 
     setTimeout(() => {
-      cameraRef.current.position.z = -zPosition
-      cameraRef.current.position.x = -xPosition
+      setCameraXPosition(-userXPosition)
+      setCameraZPosition(-userZPosition)
     }, 200)
   })
 
@@ -144,12 +144,11 @@ export default function Controller(props) {
       <Html fullscreen>
       </Html>
       <PerspectiveCamera
-        ref={cameraRef}
-        position={[0, -2, 0]}
+        position={[cameraXPosition, -2, cameraZPosition]}
       >
         <MaleDummy
           animation={animation}
-          position={[xPosition, 0, zPosition]}
+          position={[userXPosition, 0, userZPosition]}
           rotation={[0, yRotation, 0]}
         />
         {props.children}
