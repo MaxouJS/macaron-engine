@@ -21,11 +21,11 @@ export default function Controller(props) {
     window.addEventListener('keydown', e => {
       if (e.defaultPrevented) {
         return
-      } else if ((e.key === 'ArrowUp' || e.key === 'z' || e.key === 'w')) {
+      } else if ((e.key === 'ArrowUp' || e.key === 'z' || e.key === 'w') && !directions.includes('Down')) {
         setDirections([...directions, 'Up'])
       } else if ((e.key === 'ArrowDown' || e.key === 's') && !directions.includes('Up')) {
         setDirections([...directions, 'Down'])
-      } else if ((e.key === 'ArrowLeft' || e.key === 'q' || e.key === 'a')) {
+      } else if ((e.key === 'ArrowLeft' || e.key === 'q' || e.key === 'a') && !directions.includes('Right')) {
         setDirections([...directions, 'Left'])
       } else if ((e.key === 'ArrowRight' || e.key === 'd') && !directions.includes('Left')) {
         setDirections([...directions, 'Right'])
