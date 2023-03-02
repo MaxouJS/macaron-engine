@@ -18,13 +18,13 @@ export default function Controller(props) {
     window.addEventListener('keydown', e => {
       if (e.defaultPrevented) {
         return
-      } else if ((e.key === 'ArrowUp' || e.key === 'z')) {
+      } else if ((e.key === 'ArrowUp' || e.key === 'z') && !directions.includes('Down')) {
         setDirections([...directions, 'Up'])
-      } else if ((e.key === 'ArrowDown' || e.key === 's')) {
+      } else if ((e.key === 'ArrowDown' || e.key === 's') && !directions.includes('Up')) {
         setDirections([...directions, 'Down'])
-      } else if ((e.key === 'ArrowLeft' || e.key === 'q')) {
+      } else if ((e.key === 'ArrowLeft' || e.key === 'q') && !directions.includes('Right')) {
         setDirections([...directions, 'Left'])
-      } else if ((e.key === 'ArrowRight' || e.key === 'd')) {
+      } else if ((e.key === 'ArrowRight' || e.key === 'd') && !directions.includes('Left')) {
         setDirections([...directions, 'Right'])
       } else if (e.key === ' ') {
         setIsRunning(true)
