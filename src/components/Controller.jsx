@@ -121,7 +121,7 @@ export default function Controller(props) {
         <DevUi />
       </Html>
       <PerspectiveCamera
-        position={[-userXPosition, -2, (-userZPosition - 0.33)]}
+        position={[-userXPosition, -2, (-userZPosition - 0.25)]}
       >
         <MaleDummy
           animation={animation}
