@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Html, PerspectiveCamera, PresentationControls } from '@react-three/drei'
 
 import MaleDummy from './characters/maleDummy/MaleDummy'
+import DevUi from './ui/DevUi'
 
 export default function Controller(props) {
   const [directions, setDirections] = useState([])
@@ -13,7 +14,7 @@ export default function Controller(props) {
   const [userZPosition, setUserZPosition] = useState(0)
   const [userYRotation, setUserYRotation] = useState(0)
 
-  const HandleKeyDown = () => {
+  function HandleKeyDown() {
     window.addEventListener('keydown', e => {
       if (e.defaultPrevented) {
         return
@@ -31,7 +32,7 @@ export default function Controller(props) {
     }, false)
   }
 
-  const HandleKeyUp = () => {
+  function HandleKeyUp() {
     window.addEventListener('keyup', e => {
       if (e.defaultPrevented) {
         return
@@ -117,6 +118,7 @@ export default function Controller(props) {
       rotation={[Math.PI * 2, 0, 0]}
     >
       <Html fullscreen>
+        <DevUi />
       </Html>
       <PerspectiveCamera
         position={[-userXPosition, -2, -userZPosition]}
