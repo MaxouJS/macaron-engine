@@ -23,7 +23,7 @@ export default function SampleScene() {
         <Controller>
           <Model
             name='Tile'
-            scale={[10, 1, 10]}
+            scale={[10, 5, 10]}
           />
           <Sky sunPosition={[0, 90, 0]} />
         </Controller>
