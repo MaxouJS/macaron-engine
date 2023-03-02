@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { Html, PerspectiveCamera, PresentationControls } from '@react-three/drei'
+import { Html, PerspectiveCamera } from '@react-three/drei'
 
 import MaleDummy from './characters/maleDummy/MaleDummy'
 import DevUi from './ui/DevUi'
@@ -13,6 +13,9 @@ export default function Controller(props) {
   const [userXPosition, setUserXPosition] = useState(0)
   const [userZPosition, setUserZPosition] = useState(0)
   const [userYRotation, setUserYRotation] = useState(0)
+
+  const [cameraDelayX, setCameraDelayX] = useState(0)
+  const [cameraDelayZ, setCameraDelayZ] = useState(0)
 
   function HandleKeyDown() {
     window.addEventListener('keydown', e => {
@@ -100,6 +103,8 @@ export default function Controller(props) {
     
     if (directions.length === 0) {
       setAnimation('Idle')
+      setCameraDelayX(0)
+      setCameraDelayZ(0)
     }
 
     if (directions.length > 0) {
@@ -112,16 +117,12 @@ export default function Controller(props) {
   })
 
   return (
-    <PresentationControls
-      enabled={false}
-      snap={<MaleDummy />}
-      rotation={[Math.PI * 2, 0, 0]}
-    >
+    <>
       <Html fullscreen>
         <DevUi />
       </Html>
       <PerspectiveCamera
-        position={[-userXPosition, -2, (-userZPosition - 0.25)]}
+        position={[-userXPosition + cameraDelayX, -2, (-userZPosition - 0.25 + cameraDelayZ)]}
       >
         <MaleDummy
           animation={animation}
@@ -130,6 +131,6 @@ export default function Controller(props) {
         />
         {props.children}
       </PerspectiveCamera>
-    </PresentationControls>
+    </>
   )
 }
