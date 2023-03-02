@@ -11,6 +11,7 @@ export default function MaleDummy(props) {
               name='MaleDummyIdle'
               position={props.position}
               rotation={props.rotation}
+              scale={[1, 1, 1]}
             />
           :
             null
@@ -22,6 +23,7 @@ export default function MaleDummy(props) {
               name='MaleDummyRun'
               position={props.position}
               rotation={props.rotation}
+              scale={[1, 1, 1]}
             />
           :
             null
@@ -33,6 +35,7 @@ export default function MaleDummy(props) {
               name='MaleDummyWalk'
               position={props.position}
               rotation={props.rotation}
+              scale={[1, 1, 1]}
             />
           :
             null

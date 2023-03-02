@@ -18,11 +18,11 @@ export default function Controller(props) {
     window.addEventListener('keydown', e => {
       if (e.defaultPrevented) {
         return
-      } else if ((e.key === 'ArrowUp' || e.key === 'z') && !directions.includes('Down')) {
+      } else if ((e.key === 'ArrowUp' || e.key === 'z' || e.key === 'w')) {
         setDirections([...directions, 'Up'])
       } else if ((e.key === 'ArrowDown' || e.key === 's') && !directions.includes('Up')) {
         setDirections([...directions, 'Down'])
-      } else if ((e.key === 'ArrowLeft' || e.key === 'q') && !directions.includes('Right')) {
+      } else if ((e.key === 'ArrowLeft' || e.key === 'q' || e.key === 'a')) {
         setDirections([...directions, 'Left'])
       } else if ((e.key === 'ArrowRight' || e.key === 'd') && !directions.includes('Left')) {
         setDirections([...directions, 'Right'])
@@ -36,11 +36,11 @@ export default function Controller(props) {
     window.addEventListener('keyup', e => {
       if (e.defaultPrevented) {
         return
-      } else if (e.key === 'ArrowUp' || e.key === 'z') {
+      } else if (e.key === 'ArrowUp' || e.key === 'z' || e.key === 'w') {
         setDirections(directions.filter(d => d !== 'Up'))
       } else if (e.key === 'ArrowDown' || e.key === 's') {
         setDirections(directions.filter(d => d !== 'Down'))
-      } else if (e.key === 'ArrowLeft' || e.key === 'q') {
+      } else if (e.key === 'ArrowLeft' || e.key === 'q' || e.key === 'a') {
         setDirections(directions.filter(d => d !== 'Left'))
       } else if (e.key === 'ArrowRight' || e.key === 'd') {
         setDirections(directions.filter(d => d !== 'Right'))
@@ -121,7 +121,7 @@ export default function Controller(props) {
         <DevUi />
       </Html>
       <PerspectiveCamera
-        position={[-userXPosition, -2, -userZPosition]}
+        position={[-userXPosition, -2, (-userZPosition - 0.33)]}
       >
         <MaleDummy
           animation={animation}
