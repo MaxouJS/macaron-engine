@@ -67,14 +67,18 @@ export default function Controller(props) {
       speed = 10
     }
 
-    if (directions.includes('Up')) {
-      setUserZPosition(userZPosition - delta * speed)
-    } 
-    
+    props.objects.forEach(o => {
+      if (o.position[2] + o.size[2] / 2 + 0.5 <= userZPosition) {
+        if (directions.includes('Up')) {
+          setUserZPosition(userZPosition - delta * speed)
+        }
+      }
+    })
+        
     if (directions.includes('Down')) {
       setUserZPosition(userZPosition + delta * speed)
     } 
-    
+
     if (directions.includes('Left')) {
       setUserXPosition(userXPosition - delta * speed)
     } 
@@ -83,13 +87,13 @@ export default function Controller(props) {
       setUserXPosition(userXPosition + delta * speed)
     }
     
-    if (directions.includes('Up') && directions.length === 1) {
+    if (directions.includes('Up') && !directions.includes('Left') && !directions.includes('Right')) {
       setUserYRotation(-Math.PI / 1)
-    } else if (directions.includes('Down') && directions.length === 1) {
+    } else if (directions.includes('Down') && !directions.includes('Left') && !directions.includes('Right')) {
       setUserYRotation(Math.PI * 2)
-    } else if (directions.includes('Left') && directions.length === 1) {
+    } else if (directions.includes('Left') && !directions.includes('Up') && !directions.includes('Down')) {
       setUserYRotation(-Math.PI / 2)
-    } else if (directions.includes('Right') && directions.length === 1) {
+    } else if (directions.includes('Right') && !directions.includes('Up') && !directions.includes('Down')) {
       setUserYRotation(Math.PI / 2)
     } else if (directions.includes('Up') && directions.includes('Left')) {
       setUserYRotation(-Math.PI / 1.5)

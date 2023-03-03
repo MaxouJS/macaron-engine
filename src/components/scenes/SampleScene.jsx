@@ -6,6 +6,13 @@ import Controller from '../Controller'
 import Model from '../Model'
 
 export default function SampleScene() {
+  const objects = [
+    {
+      position: [0, 0, -4],
+      size: [10, 4, 2]
+    }
+  ]
+
   return (
     <>
       <Canvas>
@@ -20,10 +27,27 @@ export default function SampleScene() {
           resolution={2048}
         />
         <Bgm />
-        <Controller>
+        <Controller
+          objects={objects}
+        >
           <Model
             name='Tile'
             scale={[10, 5, 10]}
+          />
+          <Model
+            name='Box'
+            position={[0, 0, -4]}
+            scale={[10, 4, 2]}
+          />
+          <Model
+            name='Box'
+            position={[-2, 0, -2]}
+            scale={[2, 2, 2]}
+          />
+          <Model
+            name='Box'
+            position={[-2, 0, -2]}
+            scale={[2, 2, 2]}
           />
           <Sky sunPosition={[0, 90, 0]} />
         </Controller>

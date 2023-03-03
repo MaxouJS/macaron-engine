@@ -40,6 +40,18 @@ export default function MaleDummy(props) {
           :
             null
       }
+      {
+        props.animation === 'Stop'
+          ?
+            <Animation
+              name='MaleDummyStop'
+              position={props.position}
+              rotation={props.rotation}
+              scale={[1, 1, 1]}
+            />
+          :
+            null
+      }
       <Model
         name='Shadow'
         position={[props.position[0], 0.01, props.position[2]]}
