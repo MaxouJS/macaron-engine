@@ -68,7 +68,10 @@ export default function Controller(props) {
     }
 
     props.objects.forEach(o => {
-      if (o.position[2] + o.size[2] / 2 + 0.5 <= userZPosition) {
+      const length = [o.position[2] + o.size[2] / 2 + 0.25, o.position[2] - o.size[2] / 2 - 0.25]
+      const width = [o.position[0] + o.size[0] / 2 + 0.25, o.position[0] - o.size[0] / 2 - 0.25]
+
+      if (length[0] <= userZPosition || !(userXPosition <= width[0] && userXPosition >= width[1])) {
         if (directions.includes('Up')) {
           setUserZPosition(userZPosition - delta * speed)
         }
