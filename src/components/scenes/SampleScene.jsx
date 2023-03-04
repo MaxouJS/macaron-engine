@@ -8,11 +8,15 @@ import Model from '../Model'
 export default function SampleScene() {
   const objects = [
     {
+      name: 'Box',
       position: [0, 0, -4],
+      scale: [10, 4, 2],
       size: [10, 4, 2]
     },
     {
+      name: 'Box',
       position: [-2, 0, -2],
+      scale: [2, 2, 2],
       size: [2, 2, 2]
     },
   ]
@@ -38,16 +42,16 @@ export default function SampleScene() {
             name='Tile'
             scale={[10, 5, 10]}
           />
-          <Model
-            name='Box'
-            position={[0, 0, -4]}
-            scale={[10, 4, 2]}
-          />
-          <Model
-            name='Box'
-            position={[-2, 0, -2]}
-            scale={[2, 2, 2]}
-          />
+          {
+            objects.map((o, index) => (
+              <Model
+                key={index}
+                name={o.name}
+                position={o.position}
+                scale={o.scale}
+              />
+            ))
+          }
           <Sky sunPosition={[0, 90, 0]} />
         </Controller>
       </Canvas>
