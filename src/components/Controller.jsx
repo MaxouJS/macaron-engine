@@ -17,7 +17,7 @@ export default function Controller(props) {
   const [userYRotation, setUserYRotation] = useState(0)
 
   function HandleKeyDown() {
-    window.addEventListener('keydown', e => {
+    const onKeyDown = e => {
       if (e.defaultPrevented) {
         return
       } else if ((e.key === 'ArrowUp' || e.key === 'z' || e.key === 'w') && !directions.includes('Down')) {
@@ -31,28 +31,37 @@ export default function Controller(props) {
       } else if (e.key === ' ') {
         setIsRunning(true)
       }
-    }, false)
+    }
+  
+    window.addEventListener('keydown', onKeyDown, false)
+  
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+    }
   }
-
+  
   function HandleKeyUp() {
-    window.addEventListener('keyup', e => {
+    const onKeyUp = e => {
       if (e.defaultPrevented) {
         return
       } else if (e.key === 'ArrowUp' || e.key === 'z' || e.key === 'w') {
-        setDirections(directions.filter(d => d !== 'Up').splice(0))
+        setDirections(directions.filter(d => d !== 'Up'))
       } else if (e.key === 'ArrowDown' || e.key === 's') {
-        setDirections(directions.filter(d => d !== 'Down').splice(0))
+        setDirections(directions.filter(d => d !== 'Down'))
       } else if (e.key === 'ArrowLeft' || e.key === 'q' || e.key === 'a') {
-        setDirections(directions.filter(d => d !== 'Left').splice(0))
+        setDirections(directions.filter(d => d !== 'Left'))
       } else if (e.key === 'ArrowRight' || e.key === 'd') {
-        setDirections(directions.filter(d => d !== 'Right').splice(0))
+        setDirections(directions.filter(d => d !== 'Right'))
       } else if (e.key === ' ') {
         setIsRunning(false)
       }
-    }, false)
-    
-    window.removeEventListener('keydown', HandleKeyDown)
-    window.removeEventListener('keyup', HandleKeyUp)
+    }
+  
+    window.addEventListener('keyup', onKeyUp, false)
+  
+    return () => {
+      window.removeEventListener('keyup', onKeyUp)
+    }
   }
 
   useEffect(() => {  
