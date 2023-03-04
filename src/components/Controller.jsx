@@ -70,17 +70,24 @@ export default function Controller(props) {
     if (directions.includes('Up')) {
       userNewZPosition -= distance
     }
+
     if (directions.includes('Down')) {
       userNewZPosition += distance
     }
+
     if (directions.includes('Left')) {
       userNewXPosition -= distance
     }
+
     if (directions.includes('Right')) {
       userNewXPosition += distance
     }
-    
+
     props.objects.forEach((o) => {
+      if (!o.isSolid) {
+        return
+      }
+
       const length = [o.position[2] + o.size[2] / 2 + 0.2, o.position[2] - o.size[2] / 2 - 0.2]
       const width = [o.position[0] + o.size[0] / 2 + 0.2, o.position[0] - o.size[0] / 2 - 0.2]
 

@@ -9,15 +9,38 @@ export default function SampleScene() {
   const objects = [
     {
       name: 'Box',
-      position: [0, 0, -4],
-      scale: [10, 4, 2],
-      size: [10, 4, 2]
-    },
-    {
-      name: 'Box',
+      isSolid: true,
       position: [-2, 0, -2],
       scale: [2, 2, 2],
       size: [2, 2, 2]
+    },
+    {
+      name: 'Box',
+      isSolid: true,
+      position: [0, -0.5, -5.25],
+      scale: [11, 0.5, 0.5],
+      size: [11, 0.5, 0.5]
+    },
+    {
+      name: 'Box',
+      isSolid: true,
+      position: [-5.25, -0.5, 0],
+      scale: [0.5, 0.5, 10],
+      size: [0.5, 0.5, 10]
+    },
+    {
+      name: 'Box',
+      isSolid: true,
+      position: [5.25, -0.5, 0],
+      scale: [0.5, 0.5, 10],
+      size: [0.5, 0.5, 10]
+    },
+    {
+      name: 'Box',
+      isSolid: true,
+      position: [0, -0.5, 5.25],
+      scale: [11, 0.5, 0.5],
+      size: [11, 0.5, 0.5]
     },
   ]
 

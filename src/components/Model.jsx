@@ -25,4 +25,5 @@ export default function Model(props) {
   )
 }
 
+useGLTF.preload('/models/Box.glb')
 useGLTF.preload('/models/Tile.glb')
