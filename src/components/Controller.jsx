@@ -82,8 +82,8 @@ export default function Controller(props) {
     }
     
     props.objects.forEach((o) => {
-      const length = [o.position[2] + o.size[2] / 2 + 0.25, o.position[2] - o.size[2] / 2 - 0.25]
-      const width = [o.position[0] + o.size[0] / 2 + 0.25, o.position[0] - o.size[0] / 2 - 0.25]
+      const length = [o.position[2] + o.size[2] / 2 + 0.5, o.position[2] - o.size[2] / 2 - 0.5]
+      const width = [o.position[0] + o.size[0] / 2 + 0.5, o.position[0] - o.size[0] / 2 - 0.5]
 
       if (userNewZPosition <= length[0] && userNewZPosition >= length[1] && userNewXPosition <= width[0] && userNewXPosition >= width[1]) {
         collisionDetected = true
