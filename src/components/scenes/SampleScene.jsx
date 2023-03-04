@@ -8,35 +8,42 @@ import Model from '../Model'
 export default function SampleScene() {
   const objects = [
     {
-      name: 'Box',
+      name: 'OrangeBox',
       isSolid: true,
       position: [-2, 0, -2],
       scale: [2, 2, 2],
       size: [2, 2, 2]
     },
     {
-      name: 'Box',
+      name: 'GreenBox',
+      isSolid: false,
+      position: [2, 0, 2],
+      scale: [0.5, 0.5, 0.5],
+      size: [0.5, 0.5, 0.5]
+    },
+    {
+      name: 'OrangeBox',
       isSolid: true,
       position: [0, -0.5, -5.25],
       scale: [11, 0.5, 0.5],
       size: [11, 0.5, 0.5]
     },
     {
-      name: 'Box',
+      name: 'OrangeBox',
       isSolid: true,
       position: [-5.25, -0.5, 0],
       scale: [0.5, 0.5, 10],
       size: [0.5, 0.5, 10]
     },
     {
-      name: 'Box',
+      name: 'OrangeBox',
       isSolid: true,
       position: [5.25, -0.5, 0],
       scale: [0.5, 0.5, 10],
       size: [0.5, 0.5, 10]
     },
     {
-      name: 'Box',
+      name: 'OrangeBox',
       isSolid: true,
       position: [0, -0.5, 5.25],
       scale: [11, 0.5, 0.5],

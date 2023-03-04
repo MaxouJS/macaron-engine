@@ -25,5 +25,7 @@ export default function Model(props) {
   )
 }
 
-useGLTF.preload('/models/Box.glb')
+useGLTF.preload('/models/GreenBox.glb')
+useGLTF.preload('/models/OrangeBox.glb')
+useGLTF.preload('/models/Shadow.glb')
 useGLTF.preload('/models/Tile.glb')
