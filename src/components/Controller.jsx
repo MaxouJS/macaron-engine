@@ -10,12 +10,11 @@ export default function Controller(props) {
   const [animation, setAnimation] = useState('Idle')
   const [isRunning, setIsRunning] = useState(false)
 
+  const [cameraXPosititon, setCameraXPosition] = useState(0)
+  const [cameraZPosititon, setCameraZPosition] = useState(0)
   const [userXPosition, setUserXPosition] = useState(0)
   const [userZPosition, setUserZPosition] = useState(0)
   const [userYRotation, setUserYRotation] = useState(0)
-
-  const [cameraDelayX, setCameraDelayX] = useState(0)
-  const [cameraDelayZ, setCameraDelayZ] = useState(0)
 
   function HandleKeyDown() {
     window.addEventListener('keydown', e => {
@@ -115,13 +114,14 @@ export default function Controller(props) {
     
     if (directions.length === 0) {
       setAnimation('Idle')
-      setCameraDelayX(0)
-      setCameraDelayZ(0)
     }
 
     if (directions.length > 0) {
       !isRunning ? setAnimation('Walk') : setAnimation('Run')
     }
+
+    setCameraXPosition(-userNewXPosition)
+    setCameraZPosition(-userNewZPosition)
   })
 
   return (
@@ -130,7 +130,7 @@ export default function Controller(props) {
         <DevUi />
       </Html>
       <PerspectiveCamera
-        position={[-userXPosition + cameraDelayX, -2, (-userZPosition - 0.25 + cameraDelayZ)]}
+        position={[cameraXPosititon, -2, cameraZPosititon]}
       >
         <MaleDummy
           animation={animation}
