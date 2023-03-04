@@ -10,7 +10,11 @@ export default function SampleScene() {
     {
       position: [0, 0, -4],
       size: [10, 4, 2]
-    }
+    },
+    {
+      position: [-2, 0, -2],
+      size: [2, 2, 2]
+    },
   ]
 
   return (
@@ -38,11 +42,6 @@ export default function SampleScene() {
             name='Box'
             position={[0, 0, -4]}
             scale={[10, 4, 2]}
-          />
-          <Model
-            name='Box'
-            position={[-2, 0, -2]}
-            scale={[2, 2, 2]}
           />
           <Model
             name='Box'

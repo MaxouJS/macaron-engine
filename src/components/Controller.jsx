@@ -40,17 +40,20 @@ export default function Controller(props) {
       if (e.defaultPrevented) {
         return
       } else if (e.key === 'ArrowUp' || e.key === 'z' || e.key === 'w') {
-        setDirections(directions.filter(d => d !== 'Up'))
+        setDirections(directions.filter(d => d !== 'Up').splice(0))
       } else if (e.key === 'ArrowDown' || e.key === 's') {
-        setDirections(directions.filter(d => d !== 'Down'))
+        setDirections(directions.filter(d => d !== 'Down').splice(0))
       } else if (e.key === 'ArrowLeft' || e.key === 'q' || e.key === 'a') {
-        setDirections(directions.filter(d => d !== 'Left'))
+        setDirections(directions.filter(d => d !== 'Left').splice(0))
       } else if (e.key === 'ArrowRight' || e.key === 'd') {
-        setDirections(directions.filter(d => d !== 'Right'))
+        setDirections(directions.filter(d => d !== 'Right').splice(0))
       } else if (e.key === ' ') {
         setIsRunning(false)
       }
     }, false)
+    
+    window.removeEventListener('keydown', HandleKeyDown)
+    window.removeEventListener('keyup', HandleKeyUp)
   }
 
   useEffect(() => {  
@@ -58,36 +61,38 @@ export default function Controller(props) {
     HandleKeyUp()
   })
 
-  useFrame((state, delta) => {  
-    let speed = 0
+  useFrame((state, delta) => {
+    const speed = isRunning ? 10 : 5
+    const distance = speed * delta
+    let userNewXPosition = userXPosition
+    let userNewZPosition = userZPosition
 
-    if (!isRunning) {
-      speed = 5
-    } else {
-      speed = 10
+    if (directions.includes('Up')) {
+      userNewZPosition -= distance
+    }
+    if (directions.includes('Down')) {
+      userNewZPosition += distance
+    }
+    if (directions.includes('Left')) {
+      userNewXPosition -= distance
+    }
+    if (directions.includes('Right')) {
+      userNewXPosition += distance
     }
 
-    props.objects.forEach(o => {
+    let collisionDetected = false
+    props.objects.forEach((o) => {
       const length = [o.position[2] + o.size[2] / 2 + 0.25, o.position[2] - o.size[2] / 2 - 0.25]
       const width = [o.position[0] + o.size[0] / 2 + 0.25, o.position[0] - o.size[0] / 2 - 0.25]
 
-      if (length[0] <= userZPosition || !(userXPosition <= width[0] && userXPosition >= width[1])) {
-        if (directions.includes('Up')) {
-          setUserZPosition(userZPosition - delta * speed)
-        }
+      if (userNewZPosition <= length[0] && userNewZPosition >= length[1] && userNewXPosition <= width[0] && userNewXPosition >= width[1]) {
+        collisionDetected = true
       }
     })
-        
-    if (directions.includes('Down')) {
-      setUserZPosition(userZPosition + delta * speed)
-    } 
 
-    if (directions.includes('Left')) {
-      setUserXPosition(userXPosition - delta * speed)
-    } 
-    
-    if (directions.includes('Right')) {
-      setUserXPosition(userXPosition + delta * speed)
+    if (!collisionDetected) {
+      setUserXPosition(userNewXPosition)
+      setUserZPosition(userNewZPosition)
     }
     
     if (directions.includes('Up') && !directions.includes('Left') && !directions.includes('Right')) {
