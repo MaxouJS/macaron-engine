@@ -65,7 +65,7 @@ export default function Controller(props) {
     const distance = speed * delta
     let userNewXPosition = userXPosition
     let userNewZPosition = userZPosition
-    let collisionDetected = false
+    let isColliding = false
 
     if (directions.includes('Up')) {
       userNewZPosition -= distance
@@ -92,11 +92,11 @@ export default function Controller(props) {
       const width = [o.position[0] + o.size[0] / 2 + 0.2, o.position[0] - o.size[0] / 2 - 0.2]
 
       if (userNewZPosition <= length[0] && userNewZPosition >= length[1] && userNewXPosition <= width[0] && userNewXPosition >= width[1]) {
-        collisionDetected = true
+        isColliding = true
       }
     })
 
-    if (!collisionDetected) {
+    if (!isColliding) {
       setUserXPosition(userNewXPosition)
       setUserZPosition(userNewZPosition)
     }
