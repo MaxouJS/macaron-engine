@@ -66,6 +66,7 @@ export default function Controller(props) {
     const distance = speed * delta
     let userNewXPosition = userXPosition
     let userNewZPosition = userZPosition
+    let collisionDetected = false
 
     if (directions.includes('Up')) {
       userNewZPosition -= distance
@@ -79,8 +80,7 @@ export default function Controller(props) {
     if (directions.includes('Right')) {
       userNewXPosition += distance
     }
-
-    let collisionDetected = false
+    
     props.objects.forEach((o) => {
       const length = [o.position[2] + o.size[2] / 2 + 0.25, o.position[2] - o.size[2] / 2 - 0.25]
       const width = [o.position[0] + o.size[0] / 2 + 0.25, o.position[0] - o.size[0] / 2 - 0.25]
@@ -120,11 +120,7 @@ export default function Controller(props) {
     }
 
     if (directions.length > 0) {
-      if (!isRunning) {
-        setAnimation('Walk')
-      } else {
-        setAnimation('Run')
-      }
+      !isRunning ? setAnimation('Walk') : setAnimation('Run')
     }
   })
 
