@@ -15,6 +15,7 @@ export default function Controller(props) {
   const [userXPosition, setUserXPosition] = useState(0)
   const [userZPosition, setUserZPosition] = useState(0)
   const [userYRotation, setUserYRotation] = useState(0)
+  const [userLayer, setUserLayer] = useState(0)
 
   function HandleKeyDown() {
     const onKeyDown = e => {
@@ -100,7 +101,7 @@ export default function Controller(props) {
       const length = [o.position[2] + o.size[2] / 2 + 0.2, o.position[2] - o.size[2] / 2 - 0.2]
       const width = [o.position[0] + o.size[0] / 2 + 0.2, o.position[0] - o.size[0] / 2 - 0.2]
 
-      if (userNewZPosition <= length[0] && userNewZPosition >= length[1] && userNewXPosition <= width[0] && userNewXPosition >= width[1]) {
+      if (userNewZPosition <= length[0] && userNewZPosition >= length[1] && userNewXPosition <= width[0] && userNewXPosition >= width[1] && userLayer === o.layer) {
         isColliding = true
       }
     })
@@ -108,6 +109,8 @@ export default function Controller(props) {
     if (!isColliding) {
       setUserXPosition(userNewXPosition)
       setUserZPosition(userNewZPosition)
+      setCameraXPosition(-userNewXPosition)
+      setCameraZPosition(-userNewZPosition)
     }
     
     if (directions.includes('Up') && !directions.includes('Left') && !directions.includes('Right')) {
@@ -135,9 +138,6 @@ export default function Controller(props) {
     if (directions.length > 0) {
       !isRunning ? setAnimation('Walk') : setAnimation('Run')
     }
-
-    setCameraXPosition(-userNewXPosition)
-    setCameraZPosition(-userNewZPosition)
   })
 
   return (
