@@ -10,7 +10,6 @@ export default function SampleScene() {
     {
       name: 'OrangeBox',
       isSolid: true,
-      isStairs: false,
       position: [-3, 0, -4],
       scale: [4, 2, 2],
       size: [4, 2, 2],
@@ -19,7 +18,6 @@ export default function SampleScene() {
     {
       name: 'OrangeBox',
       isSolid: true,
-      isStairs: false,
       position: [3, 0, -4],
       scale: [4, 2, 2],
       size: [4, 2, 2],
@@ -27,7 +25,6 @@ export default function SampleScene() {
     },
     {
       name: 'GreenBox',
-      isSolid: false,
       position: [2, 0, 2],
       scale: [0.5, 0.5, 0.5],
       size: [0.5, 0.5, 0.5],
@@ -36,7 +33,6 @@ export default function SampleScene() {
     {
       name: 'OrangeBox',
       isSolid: true,
-      isStairs: false,
       position: [0, -0.5, -5.25],
       scale: [11, 0.5, 0.5],
       size: [11, 0.5, 0.5],
@@ -45,7 +41,6 @@ export default function SampleScene() {
     {
       name: 'OrangeBox',
       isSolid: true,
-      isStairs: false,
       position: [-5.25, -0.5, 0],
       scale: [0.5, 0.5, 10],
       size: [0.5, 0.5, 10],
@@ -54,7 +49,6 @@ export default function SampleScene() {
     {
       name: 'OrangeBox',
       isSolid: true,
-      isStairs: false,
       position: [5.25, -0.5, 0],
       scale: [0.5, 0.5, 10],
       size: [0.5, 0.5, 10],
@@ -63,7 +57,6 @@ export default function SampleScene() {
     {
       name: 'OrangeBox',
       isSolid: true,
-      isStairs: false,
       position: [0, -0.5, 5.25],
       scale: [11, 0.5, 0.5],
       size: [11, 0.5, 0.5],
@@ -73,6 +66,7 @@ export default function SampleScene() {
       name: 'Stairs',
       isSolid: true,
       isStairs: true,
+      stairsDirection: 'Up',
       position: [0, 0, -2],
       scale: [2, 2, 2],
       size: [2, 2, 2],
@@ -81,7 +75,6 @@ export default function SampleScene() {
     {
       name: 'YellowBox',
       isSolid: true,
-      isStairs: false,
       position: [0, 0, -4],
       scale: [2, 2, 2],
       size: [2, 2, 2],

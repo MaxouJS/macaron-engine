@@ -103,6 +103,13 @@ export default function Controller(props) {
 
       if (userNewZPosition <= length[0] && userNewZPosition >= length[1] && userNewXPosition <= width[0] && userNewXPosition >= width[1] && userLayer === o.layer) {
         isColliding = true
+
+        if (o.isStairs) {
+          if (o.stairsDirection === 'Up') {
+            setUserZPosition(userNewZPosition - 2)
+            setUserLayer(1)
+          }
+        }
       }
     })
 
@@ -146,11 +153,11 @@ export default function Controller(props) {
         <DevUi />
       </Html>
       <PerspectiveCamera
-        position={[cameraXPosititon, -2, cameraZPosititon]}
+        position={[cameraXPosititon, -2 + (userLayer * -2), cameraZPosititon]}
       >
         <MaleDummy
           animation={animation}
-          position={[userXPosition, 0, userZPosition]}
+          position={[userXPosition, userLayer * 2, userZPosition]}
           rotation={[0, userYRotation, 0]}
         />
         {props.children}
