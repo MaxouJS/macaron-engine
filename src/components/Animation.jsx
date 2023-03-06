@@ -1,21 +1,21 @@
-import { useEffect, useMemo } from 'react'
-import { useAnimations, useGLTF } from '@react-three/drei'
-import { clone } from 'three/examples/jsm/utils/SkeletonUtils'
+import { useEffect, useMemo } from 'react';
+import { useAnimations, useGLTF } from '@react-three/drei';
+import { clone } from 'three/examples/jsm/utils/SkeletonUtils';
 
 export default function Animation(props) {
-  let { scene, animations } = useGLTF(`/animations/${props.name}.glb`)
+  let { scene, animations } = useGLTF(`/animations/${props.name}.glb`);
   
-  scene = useMemo(() => clone(scene), [scene])
+  scene = useMemo(() => clone(scene), [scene]);
   
-  const { actions } = useAnimations(animations, scene)
+  const { actions } = useAnimations(animations, scene);
    
   useEffect(() => {
     scene.traverse((child) => {
       child.frustumCulled = false
     })
     
-    actions.ArmatureAction.play()
-  }, [actions, scene])
+    actions.ArmatureAction.play();
+  }, [actions, scene]);
   
   return (
     <primitive
@@ -24,10 +24,10 @@ export default function Animation(props) {
       scale={props.scale}
       object={scene}
     />
-  )
-}
+  );
+};
 
-useGLTF.preload('/animations/MaleDummyIdle.glb')
-useGLTF.preload('/animations/MaleDummyRun.glb')
-useGLTF.preload('/animations/MaleDummyWalk.glb')
+useGLTF.preload('/animations/MaleDummyIdle.glb');
+useGLTF.preload('/animations/MaleDummyRun.glb');
+useGLTF.preload('/animations/MaleDummyWalk.glb');
 

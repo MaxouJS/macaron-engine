@@ -1,9 +1,9 @@
-import { ContactShadows, Loader, Sky } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
+import { ContactShadows, Loader, Sky } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
 
-import Bgm from '../Bgm'
-import Controller from '../Controller'
-import Model from '../Model'
+import Bgm from '../Bgm';
+import Controller from '../Controller';
+import Model from '../Model';
 
 export default function SampleScene() {
   const objects = [
@@ -33,6 +33,7 @@ export default function SampleScene() {
     {
       name: 'OrangeBox',
       isSolid: true,
+      isLimits: true,
       position: [0, -0.5, -5.25],
       scale: [11, 0.5, 0.5],
       size: [11, 0.5, 0.5],
@@ -41,6 +42,7 @@ export default function SampleScene() {
     {
       name: 'OrangeBox',
       isSolid: true,
+      isLimits: true,
       position: [-5.25, -0.5, 0],
       scale: [0.5, 0.5, 10],
       size: [0.5, 0.5, 10],
@@ -49,6 +51,7 @@ export default function SampleScene() {
     {
       name: 'OrangeBox',
       isSolid: true,
+      isLimits: true,
       position: [5.25, -0.5, 0],
       scale: [0.5, 0.5, 10],
       size: [0.5, 0.5, 10],
@@ -57,6 +60,7 @@ export default function SampleScene() {
     {
       name: 'OrangeBox',
       isSolid: true,
+      isLimits: true,
       position: [0, -0.5, 5.25],
       scale: [11, 0.5, 0.5],
       size: [11, 0.5, 0.5],
@@ -80,7 +84,7 @@ export default function SampleScene() {
       size: [2, 2, 2],
       layer: 0
     },
-  ]
+  ];
 
   return (
     <>
@@ -118,5 +122,5 @@ export default function SampleScene() {
       </Canvas>
       <Loader />
     </>
-  )
-}
+  );
+};

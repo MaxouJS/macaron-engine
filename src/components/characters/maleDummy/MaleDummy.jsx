@@ -1,61 +1,69 @@
-import Animation from '../../Animation'
-import Model from '../../Model'
+import Animation from '../../Animation';
+import Model from '../../Model';
 
 export default function MaleDummy(props) {
   return (
     <>
       {
-        props.animation === 'Idle'
-          ?
+        (
+          props.animation === 'Idle'
+        ) ? (
             <Animation
               name='MaleDummyIdle'
               position={props.position}
               rotation={props.rotation}
               scale={[1, 1, 1]}
             />
-          :
-            null
+        ) : (
+          null
+        )
       }
       {
-        props.animation === 'Run'
-          ?
+        (
+          props.animation === 'Run'
+        ) ? (
             <Animation
               name='MaleDummyRun'
               position={props.position}
               rotation={props.rotation}
               scale={[1, 1, 1]}
             />
-          :
-            null
+        ) : (
+          null
+        )
       }
       {
-        props.animation === 'Walk'
-          ?
+        (
+          props.animation === 'Walk'
+        ) ? (
             <Animation
               name='MaleDummyWalk'
               position={props.position}
               rotation={props.rotation}
               scale={[1, 1, 1]}
             />
-          :
-            null
+        ) : (
+          null
+        )
       }
       {
-        props.animation === 'Stop'
-          ?
+        (
+          props.animation === 'Stop'
+        ) ? (
             <Animation
               name='MaleDummyStop'
               position={props.position}
               rotation={props.rotation}
               scale={[1, 1, 1]}
             />
-          :
-            null
+        ) : (
+          null
+        )
       }
       <Model
         name='Shadow'
         position={[props.position[0], 0.01, props.position[2]]}
       />
     </>
-  )
-}
+  );
+};
