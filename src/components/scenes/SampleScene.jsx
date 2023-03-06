@@ -1,7 +1,6 @@
 import { ContactShadows, Loader, Sky } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 
-import Bgm from '../Bgm';
 import Controller from '../Controller';
 import Model from '../Model';
 
@@ -99,7 +98,6 @@ export default function SampleScene() {
           far={100}
           resolution={2048}
         />
-        <Bgm />
         <Controller
           objects={objects}
         >
