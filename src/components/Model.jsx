@@ -1,17 +1,17 @@
-import { useEffect, useMemo } from 'react'
-import { useGLTF } from '@react-three/drei'
-import { clone } from 'three/examples/jsm/utils/SkeletonUtils'
+import { useEffect, useMemo } from 'react';
+import { useGLTF } from '@react-three/drei';
+import { clone } from 'three/examples/jsm/utils/SkeletonUtils';
 
 export default function Model(props) {
-  let { scene } = useGLTF(`/models/${props.name}.glb`)
+  let { scene } = useGLTF(`/models/${props.name}.glb`);
   
-  scene = useMemo(() => clone(scene), [scene])
+  scene = useMemo(() => clone(scene), [scene]);
      
   useEffect(() => {
     scene.traverse((child) => {
-      child.frustumCulled = false
-    })
-  }, [scene])
+      child.frustumCulled = true;
+    });
+  }, [scene]);
   
   return (
     <primitive
@@ -22,10 +22,10 @@ export default function Model(props) {
       scale={props.scale}
       object={scene}
     />
-  )
-}
+  );
+};
 
-useGLTF.preload('/models/GreenBox.glb')
-useGLTF.preload('/models/OrangeBox.glb')
-useGLTF.preload('/models/Shadow.glb')
-useGLTF.preload('/models/Tile.glb')
+useGLTF.preload('/models/GreenBox.glb');
+useGLTF.preload('/models/OrangeBox.glb');
+useGLTF.preload('/models/Shadow.glb');
+useGLTF.preload('/models/Tile.glb');

@@ -12,7 +12,6 @@ export default function SampleScene() {
       position: [-3, 0, -4],
       scale: [4, 2, 2],
       size: [4, 2, 2],
-      layer: 0
     },
     {
       name: 'OrangeBox',
@@ -20,68 +19,41 @@ export default function SampleScene() {
       position: [3, 0, -4],
       scale: [4, 2, 2],
       size: [4, 2, 2],
-      layer: 0
     },
     {
       name: 'GreenBox',
-      position: [2, 0, 2],
-      scale: [0.5, 0.5, 0.5],
-      size: [0.5, 0.5, 0.5],
-      layer: 0
+      isSolid: false,
+      position: [0, 0, -4],
+      scale: [2, 2, 0.5],
+      size: [2, 2, 0.5],
     },
     {
       name: 'OrangeBox',
       isSolid: true,
-      isLimits: true,
       position: [0, -0.5, -5.25],
       scale: [11, 0.5, 0.5],
       size: [11, 0.5, 0.5],
-      layer: 0
     },
     {
       name: 'OrangeBox',
       isSolid: true,
-      isLimits: true,
       position: [-5.25, -0.5, 0],
       scale: [0.5, 0.5, 10],
       size: [0.5, 0.5, 10],
-      layer: 0
     },
     {
       name: 'OrangeBox',
       isSolid: true,
-      isLimits: true,
       position: [5.25, -0.5, 0],
       scale: [0.5, 0.5, 10],
       size: [0.5, 0.5, 10],
-      layer: 0
     },
     {
       name: 'OrangeBox',
       isSolid: true,
-      isLimits: true,
       position: [0, -0.5, 5.25],
       scale: [11, 0.5, 0.5],
       size: [11, 0.5, 0.5],
-      layer: 0
-    },
-    {
-      name: 'Stairs',
-      isSolid: true,
-      isStairs: true,
-      stairsDirection: 'Up',
-      position: [0, 0, -2],
-      scale: [2, 2, 2],
-      size: [2, 2, 2],
-      layer: 0
-    },
-    {
-      name: 'YellowBox',
-      isSolid: true,
-      position: [0, 0, -4],
-      scale: [2, 2, 2],
-      size: [2, 2, 2],
-      layer: 0
     },
   ];
 
@@ -90,14 +62,6 @@ export default function SampleScene() {
       <Canvas>
         <ambientLight />
         <directionalLight position={[5, 20, 10]} />
-        <ContactShadows
-          position={[0, 0, 0]}
-          opacity={0.75}
-          scale={25}
-          blur={0.1}
-          far={100}
-          resolution={2048}
-        />
         <Controller
           objects={objects}
         >

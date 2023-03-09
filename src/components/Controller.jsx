@@ -15,7 +15,6 @@ export default function Controller(props) {
   const [userXPosition, setUserXPosition] = useState(0);
   const [userZPosition, setUserZPosition] = useState(0);
   const [userYRotation, setUserYRotation] = useState(0);
-  const [userLayer, setUserLayer] = useState(0);
 
   function HandleKeyDown() {
     const onKeyDown = e => {
@@ -35,9 +34,9 @@ export default function Controller(props) {
     };
   
     window.addEventListener('keydown', onKeyDown, false);
-  
+
     return () => {
-      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keydown', onKeyDown, false);
     };
   };
   
@@ -59,15 +58,20 @@ export default function Controller(props) {
     };
   
     window.addEventListener('keyup', onKeyUp, false);
-  
+
     return () => {
-      window.removeEventListener('keyup', onKeyUp);
+      window.removeEventListener('keydown', onKeyUp, false);
     };
   };
 
   useEffect(() => {  
     HandleKeyDown();
     HandleKeyUp();
+     
+    return () => {
+      window.removeEventListener('keydown', HandleKeyDown, false);
+      window.removeEventListener('keyup', HandleKeyUp, false);
+    };
   });
 
   useFrame((state, delta) => {
@@ -101,15 +105,8 @@ export default function Controller(props) {
       const length = [o.position[2] + o.size[2] / 2 + 0.2, o.position[2] - o.size[2] / 2 - 0.2];
       const width = [o.position[0] + o.size[0] / 2 + 0.2, o.position[0] - o.size[0] / 2 - 0.2];
 
-      if (userNewZPosition <= length[0] && userNewZPosition >= length[1] && userNewXPosition <= width[0] && userNewXPosition >= width[1] && userLayer === o.layer) {
+      if (userNewZPosition <= length[0] && userNewZPosition >= length[1] && userNewXPosition <= width[0] && userNewXPosition >= width[1]) {
         isColliding = true;
-
-        if (o.isStairs) {
-          if (o.stairsDirection === 'Up') {
-            setUserZPosition(userNewZPosition - 2)
-            setUserLayer(1)
-          };
-        };
       };
     });
 
@@ -152,21 +149,16 @@ export default function Controller(props) {
       <Html fullscreen>
         <DevUi />
       </Html>
-      <PresentationControls
-        enabled={false}
-        rotation={[0, 0, 0]}
+      <PerspectiveCamera
+        position={[cameraXPosititon, -2, cameraZPosititon]}
       >
-        <PerspectiveCamera
-          position={[cameraXPosititon, -2 + (userLayer * -2), cameraZPosititon]}
-        >
-          <MaleDummy
-            animation={animation}
-            position={[userXPosition, userLayer * 2, userZPosition]}
-            rotation={[0, userYRotation, 0]}
-          />
-          {props.children}
-        </PerspectiveCamera>
-      </PresentationControls>
+        <MaleDummy
+          animation={animation}
+          position={[userXPosition, 0, userZPosition]}
+          rotation={[0, userYRotation, 0]}
+        />
+        {props.children}
+      </PerspectiveCamera>
     </>
   );
 };
